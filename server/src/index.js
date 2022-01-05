@@ -1,11 +1,6 @@
 const {ApolloServer} = require('apollo-server');
 const typeDefs = require('./schema');
 
-const server = new ApolloServer({
-  typeDefs, 
-  mocks
-});
-
 const mocks = {
   Query: () => ({
     trackForHome: () => [...new Array(6)]
@@ -24,6 +19,8 @@ const mocks = {
     modulescount: () => 6
   })
 }
+
+const server = new ApolloServer({typeDefs, mocks});
 
 server.listen().then(() => {
   console.log(`
